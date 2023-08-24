@@ -49,7 +49,7 @@ const Pocket = () => {
         <p className=""></p>
         {pocket < 50 && (
           <div className="flex  w-24 justify-between">
-            <div className="text-white font-medium">Empty</div>
+            <div className="text-white font-medium">Dehydrated</div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -62,7 +62,6 @@ const Pocket = () => {
                 clipRule="evenodd"
               />
             </svg>
-           
           </div>
         )}
         {pocket > 50 && pocket < 100 && (
