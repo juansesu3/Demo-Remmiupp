@@ -1,28 +1,16 @@
 import Nav from "@/components/Nav";
-import { signIn } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { signIn, useSession } from "next-auth/react";
+import {  useState } from "react";
 import Suggestion from "./Suggestion";
-
-import axios from "axios";
 import { useRouter } from "next/navigation";
-import dashboard from "@/pages/dashboard";
 
 const Layout = ({ children }) => {
+  const { data: session } = useSession();
   const [showNav, setShowNav] = useState(false);
-
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [users, setUsers] = useState([]);
   const [error, setError] = useState(false);
   const router = useRouter();
-  const [session, setSession] = useState(false);
-
-  useEffect(() => {
-    axios.get("api/register").then((response) => {
-      setUsers(response.data);
-    });
-  }, []);
 
   const handleSignInCredentials = async (e) => {
     e.preventDefault();
@@ -39,7 +27,6 @@ const Layout = ({ children }) => {
         return;
       }
       router.replace("/");
-      setSession(true);
     } catch (error) {
       console.log(error);
     }
