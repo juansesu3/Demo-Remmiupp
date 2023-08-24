@@ -23,7 +23,6 @@ const Layout = ({ children }) => {
       setUsers(response.data);
     });
   }, []);
-  console.log(users);
 
   const handleSignInCredentials = async (e) => {
     e.preventDefault();

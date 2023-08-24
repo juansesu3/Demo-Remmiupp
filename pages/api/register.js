@@ -15,13 +15,14 @@ const handle = async (req, res) => {
   }
 
   if (method === "POST") {
-    const { name, email, password } = req.body;
+    const { name, email, password, image } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
     console.log(req.body);
     const userDoc = await User.create({
       name,
       email,
       password: hashedPassword,
+      image,
     });
     res.json(userDoc);
   }

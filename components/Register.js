@@ -3,24 +3,23 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 
 const Register = () => {
+  const [image, setImage] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [error, setError] = useState(false);
-  const router = useRouter()
-
+  const router = useRouter();
+console.log(image, email, password, name )
   const handleSubmit = async (ev) => {
     ev.preventDefault();
-    const data = { name, email, password };
-    if (!name || !email || !password) {
+    const data = { name, email, password, image };
+    if (!name || !email || !password || !image) {
       setError(true);
       return;
     }
     try {
-       await axios.post("/api/register", data);
-       router.push('/');
-
-
+      await axios.post("/api/register", data);
+      router.push("/");
     } catch (error) {
       console.log("Error during registration: ", error);
     }
@@ -29,6 +28,12 @@ const Register = () => {
     <div className="flex justify-center items-center mt-52">
       {" "}
       <form onSubmit={handleSubmit} className="flex flex-col  gap-3">
+        <input
+          type="text"
+          value={image}
+          onChange={(ev) => setImage(ev.target.value)}
+          placeholder="image URL"
+        />
         <input
           type="text"
           value={name}
@@ -65,3 +70,5 @@ const Register = () => {
 };
 
 export default Register;
+
+//https://juan-sesu-ecommerce.s3.amazonaws.com/1692869205147.png

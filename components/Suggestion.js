@@ -100,7 +100,6 @@ const Suggestion = () => {
     axios
       .post(url, data, { headers: headers })
       .then((response) => {
-        console.log(response);
         setChatLog((prevChatLog) => [
           ...prevChatLog,
           { type: "bot", message: response.data.choices[0].message.content },
@@ -152,7 +151,11 @@ const Suggestion = () => {
             <div>
               <span className="relative animate-pulse  flex flex-col h-14 w-6 mx-auto my-2 ">
                 <div className={`flex items-start justify-center`}>
-                  <MyThreeComponent containerWidth={60} containerHeight={60} isLoading={isLoading} />
+                  <MyThreeComponent
+                    containerWidth={60}
+                    containerHeight={60}
+                    isLoading={isLoading}
+                  />
                 </div>
               </span>
             </div>
